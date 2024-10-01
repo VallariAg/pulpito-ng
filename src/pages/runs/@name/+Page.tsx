@@ -9,6 +9,7 @@ import type { Run } from "#src/lib/paddles.d";
 
 import JobList from "#src/components/JobList";
 import Link from "#src/components/Link";
+import KillButton from '#src/components/KillButton';
 
 const PREFIX = "index";
 
@@ -55,6 +56,7 @@ export default function Page() {
           date
         </FilterLink>
       </div>
+      <KillButton data={data} />
       <JobList />
     </div>
   );

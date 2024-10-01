@@ -18,7 +18,7 @@ import Alert from "../Alert";
 
 
 type KillButtonProps = {
-  query: UseQueryResult<RunResponse>;
+  data: RunResponse;
 };
 
 type KillButtonDialogProps = {
@@ -28,11 +28,11 @@ type KillButtonDialogProps = {
   handleClose: () => void;
 };
 
-export default function KillButton({query: runQuery}: KillButtonProps) {
+export default function KillButton({data}: KillButtonProps) {
   const killMutation = useRunKill();
   const [open, setOpen] = useState(false);
   const sessionQuery = useSession();
-  const data: RunResponse | undefined = runQuery.data;
+  // const data: RunResponse | undefined = runQuery;
   const run_owner = data?.jobs[0].owner || "";
   const killPayload: KillRunPayload = {
     "--run": data?.name || "",
@@ -60,9 +60,9 @@ export default function KillButton({query: runQuery}: KillButtonProps) {
   };
 
   const refreshAndtoggle = () => {
-    if (open && !killMutation.isIdle) { // on closing confirmation dialog after kill-run
-      runQuery.refetch();
-    }
+    // if (open && !killMutation.isIdle) { // on closing confirmation dialog after kill-run
+    //   // runQuery.refetch();
+    // }
     toggleDialog();
     killMutation.reset();
   }
